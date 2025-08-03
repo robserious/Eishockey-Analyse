@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 from streak_tools import berechne_streaks_von_csv
+from utils import read_csv_with_delimiter_detection
 
 def spieler_main():
     st.title("🧊 Spieleranalyse – Streaks")
@@ -8,7 +9,7 @@ def spieler_main():
     uploaded_file = st.file_uploader("Wähle eine CSV-Datei", type="csv")
 
     if uploaded_file is not None:
-        df = pd.read_csv(uploaded_file, delimiter=";")
+        df = read_csv_with_delimiter_detection(uploaded_file)
         df.columns = df.columns.str.strip()
 
         spalten = df.columns
